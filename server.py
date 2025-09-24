@@ -33,3 +33,12 @@ def emotion_responder():
 
     # Return a formatted string with the sentiment label and score
     return f"For the given statement, the system response is {result}. The dominant emotion is  {dominant_emotion}."
+
+
+@app.route("/")
+def render_index_page():
+    return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
