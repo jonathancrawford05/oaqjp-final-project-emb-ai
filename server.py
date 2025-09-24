@@ -11,23 +11,12 @@ def emotion_responder():
 
     Use input text to call emotion detection endpoint and return structured
     text response.
-
-    Args:
-        None
-
-    Outputs:
-        (str): Contains a dict like structure with the emotions as keys
-        and scores as values. Notes the dominant emotion predicted.
-    
     '''
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
-    # Pass the text to the emotion_detector function and store the response
-    response = emotion_detector(text_to_analyze)
-
-    # Extract the label and score from the response
-    result = emotion_detector('I am glad this happened')
+    # Pass the text to the emotion_detector function and store the result
+    result = emotion_detector(text_to_analyze)
     dominant_emotion = result['dominant_emotion']
     del result['dominant_emotion']
 
@@ -41,4 +30,4 @@ def render_index_page():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8000)
