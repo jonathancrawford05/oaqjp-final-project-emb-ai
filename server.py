@@ -18,6 +18,12 @@ def emotion_responder():
     # Pass the text to the emotion_detector function and store the result
     result = emotion_detector(text_to_analyze)
     dominant_emotion = result['dominant_emotion']
+
+    # Check if dominant_emotion is None, indicating an error or invalid input
+    if dominant_emotion is None:
+        return "Invalid input! Try again."
+
+    # Remove dominant_emotion key to fit required return structure
     del result['dominant_emotion']
 
     # Return a formatted string with the sentiment label and score
@@ -30,4 +36,4 @@ def render_index_page():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=5000)
