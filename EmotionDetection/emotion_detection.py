@@ -1,5 +1,8 @@
-import requests
+'''Emotion detection module.'''
+
 import json
+import requests
+
 
 def emotion_detector(text_to_analyze: str)->str:
     '''Extract emotions with scores from the emotion detection model API endpoint.
