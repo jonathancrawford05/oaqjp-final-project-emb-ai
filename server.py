@@ -1,0 +1,35 @@
+'''Application deployment script.'''
+
+from flask import Flask, render_template, request
+from EmotionDetection.emotion_detection import emotion_detector
+
+app = Flask("Emotion Detection")
+
+@app.route("/emotionDetector")
+def emotion_responder():
+    '''Routing method for emotion detection application.
+
+    Use input text to call emotion detection endpoint and return structured
+    text response.
+
+    Args:
+        None
+
+    Outputs:
+        (str): Contains a dict like structure with the emotions as keys
+        and scores as values. Notes the dominant emotion predicted.
+    
+    '''
+    # Retrieve the text to analyze from the request arguments
+    text_to_analyze = request.args.get('textToAnalyze')
+
+    # Pass the text to the emotion_detector function and store the response
+    response = emotion_detector(text_to_analyze)
+
+    # Extract the label and score from the response
+    result = emotion_detector('I am glad this happened')
+    dominant_emotion = result['dominant_emotion']
+    del result['dominant_emotion']
+
+    # Return a formatted string with the sentiment label and score
+    return f"For the given statement, the system response is {result}. The dominant emotion is  {dominant_emotion}."
