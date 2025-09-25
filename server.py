@@ -8,9 +8,6 @@ app = Flask("Emotion Detection")
 @app.route("/emotionDetector")
 def emotion_responder():
     '''Routing method for emotion detection application.
-
-    Use input text to call emotion detection endpoint and return structured
-    text response.
     '''
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
@@ -27,11 +24,14 @@ def emotion_responder():
     del result['dominant_emotion']
 
     # Return a formatted string with the sentiment label and score
-    return f"For the given statement, the system response is {result}. The dominant emotion is  {dominant_emotion}."
+    initial_output_string = "For the given statement, the system response is"
+    return f"{initial_output_string} {result}. The dominant emotion is  {dominant_emotion}."
 
 
 @app.route("/")
 def render_index_page():
+    '''Method to render result with HTML template.
+    '''
     return render_template('index.html')
 
 
